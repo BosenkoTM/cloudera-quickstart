@@ -64,6 +64,23 @@ hdfs dfs -chmod -R 777 /tmp
 
 _PS : не забудьте дважды выйти из системы, чтобы вернуться к пользователю `сloudera`, иначе у вас возникнут ошибки при доступе к папкам `HDFS_`.
 
+#### 3. Map Reduce 
+
+* Запустите пример Pi:
+`yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 4 100`
+
+Наблюдайте за потоком. Проверить логи выполнения примера можно в Firefox на вкладке `Hadoop > YARN Resource Manager`.
+
+Задание: подсчитать количество слов в файле внутри HDFS, запустим его для файла `hdfs:///user/cloudera/geoloc/`.
+
+* Запустить `yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar wordcount geoloc/geolocation.csv output`.
+   * Команда может быть отменена, если `hdfs:///user/cloudera/output` уже существует, в этом случае удалите папку с помощью `hdfs dfs -rm -r -f output`.
+* Проверьте папку `hdfs:///user/cloudera/output`. Вы можете использовать «hdfs dfs -ls output» и «hdfs dfs -cat output/part-r-00000».
+   * Также просмотрите журналы на новой вкладке `Hadoop > YARN Resource Manager` в Firefox.
+
+* Там работает только один `reducer`. Вы можете редактировать количество работающих `reducers` с помощью флага `-D mapred.reduce.tasks=10` . Отредактируйте предыдущую команду, чтобы изменить количество работающих `reducers`. Возможно, вам следует удалить или изменить имя папки вывода.
+   * Еще раз проверьте выходную папку. Можете ли вы заметить разницу с предыдущим исполнением?
+
 ### Самостоятельная работа 3
 
 1. Развернуть виртуальное окружение.
