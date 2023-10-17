@@ -1,5 +1,7 @@
 # Экосистема больших данных
 
+Основные команды `HDFS` [тут](hdfs_commands).
+
 Учебное пособие по Hadoop внутри [Cloudera quickstart VM](https://downloads.cloudera.com/demo_vm/virtualbox/cloudera-quickstart-vm-5.13.0-0-virtualbox.zip).
 
 ## Подготовка рабочего места
