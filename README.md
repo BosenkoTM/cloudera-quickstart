@@ -115,3 +115,68 @@ base64 /dev/urandom | head -c 10000000 > file.txt .
 - chown root:root /dev/random /dev/urandom 
 
 Перед выполнением команд желательно создать контрольную точку (в HyperV) для восстановления машины до применения команд. 
+
+### Самостоятельная работа 3-2. cloudera
+
+#### 4. Pig
+
+
+Pig — это расширение для компиляции определенного языка Pig Latin в сценарии MapReduce.
+
+Можно запустить двумя способами:
+
+1. В интерактивном режиме через Терминал, запустив оболочку Pig с помощью `pig` и выполняя команды одну за другой.
+2. В `Hue`можно перейти в редактор Pig через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
+
+* Запустите следующий скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла геолокации:
+
+```
+geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid,driverid,event,latitude,longitude,city,state,velocity,event_ind,idling_ind);
+
+geoloc_limit = LIMIT geoloc 10;
+
+DUMP geoloc_limit;
+```
+
+* Посчитать статистику по этому файлу. 
+
+```
+geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid:chararray, driverid:chararray, event:chararray, latitude:double, longitude:double, city:chararray, state:chararray, velocity:double, event_ind:long, idling_ind:long);
+
+truck_ids = GROUP geoloc BY truckid;
+
+result = FOREACH truck_ids GENERATE group AS truckid, COUNT(geoloc) as count;
+
+STORE result INTO 'results';
+
+DUMP result;
+```
+
+* Анализ:
+   * Проверьте папку «results», хранящуюся в HDFS, по строке `STORE result`. Что вы можете сказать по сравнению с количеством слов MapReduce?
+   * Также просмотрите журналы на новой вкладке любимого `Hadoop > YARN Resource Manager` в Firefox. Объяснять.
+* Можете ли вы подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
+
+
+
+#### 5. Hive
+
+Как и в случае с Pig, также есть возможность поработать с инструментом `hive` в терминале или, воспользовавшись `Hue` и перейти к редактору `Hive` через `Query > Editor > Hive`.
+
+* При использовании терминала создайте внешнюю таблицу для папки `geoloc`, содержащую файл geolocation.csv. Возможно, потребуется переместить файл `trucks.csv` из папки `geoloc` с помощью `hdfs dfs -mv geoloc/trucks.csv`. Следующая команда создает таблицу Hive, указывающую на расположение в HDFS. Вы можете удалить таблицу, это не повредит данные в HDFS:
+
+```sql
+CREATE EXTERNAL TABLE geolocation (truckid STRING, driverid STRING, event STRING, latitude DOUBLE, longitude DOUBLE, city STRING, state STRING, velocity DOUBLE, event_ind BIGINT, idling_ind BIGINT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/user/cloudera/geoloc';
+```
+
+```sql
+SELECT truckid FROM geolocation LIMIT 10;
+```
+
+* Или с помощью Hue: на боковой панели выберите SQL, нажмите кнопку +, а затем вручную выберите файл CSV.
+
+
+* Можете ли вы снова подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
