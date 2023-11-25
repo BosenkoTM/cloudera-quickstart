@@ -196,6 +196,8 @@ a.	В навигационном меню выберите “Files”
 b.	Создайте папку
 c.	Загрузите файл, нажав Upload
 3.	Перейдите в “Editor > Hive” и выполните запрос
+
+```sql
 CREATE EXTERNAL TABLE athlete (
     ID INT,
     Name STRING,
@@ -215,7 +217,7 @@ CREATE EXTERNAL TABLE athlete (
 )
 STORED AS PARQUET
 LOCATION '/user/cloudera/athlete'
-
+```
 
 #### Impala
 
