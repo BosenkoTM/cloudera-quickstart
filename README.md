@@ -186,9 +186,36 @@ SELECT truckid FROM geolocation LIMIT 10;
 ```
 
 * Или с помощью Hue: на боковой панели выберите SQL, нажмите кнопку +, а затем вручную выберите файл CSV.
-
-
 * Можете ли вы снова подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
+
+* Создание таблицы в Hive
+1.	Скачайте датасет
+https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet 
+2.	Через HUE загрузите файл в папку /user/cloudera/athlete 
+a.	В навигационном меню выберите “Files”
+b.	Создайте папку
+c.	Загрузите файл, нажав Upload
+3.	Перейдите в “Editor > Hive” и выполните запрос
+CREATE EXTERNAL TABLE athlete (
+    ID INT,
+    Name STRING,
+    Sex STRING,
+    Age INT,
+    Height INT,
+    Weight INT,
+    Team STRING,
+    NOC STRING,
+    Games STRING,
+    `Year` INT,
+    Season STRING,
+    City STRING,
+    Sport STRING,
+    Event STRING,
+    Medal STRING 
+)
+STORED AS PARQUET
+LOCATION '/user/cloudera/athlete'
+
 
 #### Impala
 
