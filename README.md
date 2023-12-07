@@ -189,13 +189,12 @@ SELECT truckid FROM geolocation LIMIT 10;
 * Можете ли вы снова подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
 
 #### Индивидуальное задание "Создание таблицы в Hive"
-1.	Скачайте датасет
-https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet 
-2.	Через HUE загрузите файл в папку /user/cloudera/athlete 
+1.	Скачайте [датасет](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/athlete.snappy.parquet) или [тут](https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet) 
+3.	Через HUE загрузите файл в папку /user/cloudera/athlete 
 a.	В навигационном меню выберите “Files”
 b.	Создайте папку
 c.	Загрузите файл, нажав Upload
-3.	Перейдите в “Editor > Hive” и выполните запрос
+4.	Перейдите в “Editor > Hive” и выполните запрос
 
 ```sql
 CREATE EXTERNAL TABLE athlete (
