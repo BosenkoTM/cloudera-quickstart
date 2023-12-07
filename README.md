@@ -190,11 +190,11 @@ SELECT truckid FROM geolocation LIMIT 10;
 
 #### Индивидуальное задание "Создание таблицы в Hive"
 1.	Скачайте [датасет](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/athlete.snappy.parquet) или [тут](https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet) 
-3.	Через HUE загрузите файл в папку /user/cloudera/athlete 
-a.	В навигационном меню выберите “Files”
-b.	Создайте папку
-c.	Загрузите файл, нажав Upload
-4.	Перейдите в “Editor > Hive” и выполните запрос
+3.	Через HUE загрузите файл в папку /user/cloudera/athlete
+4. В навигационном меню выберите “Files”.
+5. Создайте папку.
+6. Загрузите файл, нажав Upload.
+7.	Перейдите в “Editor > Hive” и выполните запрос:
 
 ```sql
 CREATE EXTERNAL TABLE athlete (
