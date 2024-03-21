@@ -22,7 +22,7 @@
 
 * Чтобы [включить копирование/вставку](https://www.techrepublic.com/article/how-to-enable-copy-and-paste-in-virtualbox/), выберите `Devices > Shared Clipboard > Bidirectional`.
 
-В первой части урока мы будем взаимодействовать с [trucks geolocation dataset from the Cloudera tutorial](https://www.cloudera.com/tutorials/getting-started-with-hdp-sandbox.html). 
+В первой части урока мы будем взаимодействовать с [trucks geolocation dataset from the Cloudera tutorial](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
 
 ##  Первые шаги в экосистеме Hadoop
 
