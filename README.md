@@ -36,11 +36,9 @@
 Выбрав один из нескольких интерпретаторов для `Apache Hive`, `Apache Impala`, `Presto Apache Flink SQL`, `SparkSQL`, `Apache Phoenix`, `ksqlDB`, `Elastic Search`, `Apache Druid`, `PostgreSQL`, `Redshift`, `BigQuery`, позволяет подключиться ко всем базам данных.
 (https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html)/
 
-`Задание 1.` Проанализировать и визуализировать данные с помощью `Impala`(высокоскоростной механизм запросов SQL). 
-
 ###  3. Взаимодействие с файловой системой HDFS 
 
-3.1. Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
+`3.1.` Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww). 
 
 * Или использовать терминал:
 ```bash
@@ -50,29 +48,43 @@ wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/
 ```bash
 unzip geolocation.csv
 ```
-
-2.2. В `Hue`, выбрать `Browsers > Files`. 
+`3.2.` В `Hue`, выбрать `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
   * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
 * Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
 
 ### 4. HDFS CLI
 
-* Откройте терминал.
-* Вы можете получить доступ к команде hdfs из терминала. Это должно вывести справку из командной строки.
-* Отображение версии HDFS с помощью `hdfs version`.
+4.1. Открыть  терминал.
+4.2. Проверить версию `HDFS` с помощью 
 
-* Просмотрите все папки внутри HDFS с помощью `hdfs dfs -ls`.
-   * Если вы наберете только `hdfs dfs -ls`, вы перейдете на `hdfs:///user/cloudera`. Вы должны найти файлы геолокации.
-   * По умолчанию, если не укажете абсолютный путь к HDFS, HDFS начнется с вашего домашнего каталога HDFS `hdfs:///user/cloudera`.
-* Переименуйте папку `hdfs:///user/cloudera/data` в `hdfs:///user/cloudera/geoloc` с помощью `hdfs dfs -mv` .
-   * Помните, что по умолчанию `hdfs dfs -mv data geoloc` эквивалентен `hdfs dfs -mv hdfs:///user/cloudera/data hdfs:///user/cloudera/geoloc`.
-* Создайте папку в HDFS с именем «test».
-* Чтобы скопировать файлы с вашего локального компьютера в HDFS, существует `hdfs dfs -copyFromLocal <local_file> <path_in_HDFS>`. Попробуйте скопировать файл geolocation.csv с локальной виртуальной машины в папку test HDFS.
-* В настоящее время папка `hdfs:///tmp` не имеет разрешений на запись для всех.
+```bash
+`hdfs version`.
+```
+4.3. Просмотреть все папки внутри HDFS с помощью
+
+```bash
+hdfs dfs -ls /
+```
+   * Если вы наберете только `hdfs dfs -ls`, вы перейдете на `hdfs:///user/cloudera`. Необходимо найти файлы геолокации.
+   * По умолчанию, если не указать абсолютный путь к HDFS, будет отображен домашний каталог HDFS `hdfs:///user/cloudera`.
+4.4. Переименовать папку `hdfs:///user/cloudera/data` в `hdfs:///user/cloudera/geoloc` с помощью `hdfs dfs -mv` .
+   * Помните, что по умолчанию
+
+```bash   
+     hdfs dfs -mv data geoloc
+```
+     эквивалентен `hdfs dfs -mv hdfs:///user/cloudera/data hdfs:///user/cloudera/geoloc`.
+4.5. Создать папку в HDFS с именем «test».
+* Чтобы скопировать файлы с локального компьютера в HDFS, используют скрипт
+```bash
+  hdfs dfs -copyFromLocal <local_file> <path_in_HDFS>
+```
+  Попробуйте скопировать файл geolocation.csv с локальной виртуальной машины в папку test HDFS.
+* По умолчанию каталог `hdfs:///tmp` не имеет разрешений на запись для всех.
    В экосистеме Hadoop суперпользователем является не root, а hdfs. Поэтому нам нужно быть пользователем hdfs, прежде чем запускать установку разрешений. Запустите следующий скрипт.
 
-```sh
+```bash
 sudo su -
 su hdfs
 hdfs dfs -chmod -R 777 /tmp
@@ -180,8 +192,6 @@ DUMP result;
    * Также просмотрите журналы на новой вкладке `Hadoop > YARN Resource Manager` в Firefox. Поясните список логов в журнале.
 * Можете ли вы подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
 
-
-
 #### Hive
 
 Как и в случае с Pig, также есть возможность поработать с инструментом `hive` в терминале или, воспользовавшись `Hue` и перейти к редактору `Hive` через `Query > Editor > Hive`.
@@ -202,12 +212,12 @@ SELECT truckid FROM geolocation LIMIT 10;
 * Или с помощью Hue: на боковой панели выберите SQL, нажмите кнопку +, а затем вручную выберите файл CSV.
 * Можете ли вы снова подсчитать список различных городов, посещенных каждым идентификатором грузовика, и среднюю скорость для каждого идентификатора грузовика?
 
-#### Индивидуальное задание "Создание таблицы в Hive"
+## Индивидуальное задание "Создание таблицы в Hive"
 1.	Скачайте [датасет](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/athlete.snappy.parquet) или [тут](https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet) 
-3.	Через HUE загрузите файл в папку /user/cloudera/athlete
-4. В навигационном меню выберите “Files”.
+3.	Через `HUE` загрузите файл в папку `/user/cloudera/athlete`.
+4. В навигационном меню выберите `Files`.
 5. Создайте папку.
-6. Загрузите файл, нажав Upload.
+6. Загрузите файл в `HDFS`, нажав `Upload`.
 7.	Перейдите в “Editor > Hive” и выполните запрос:
 
 ```sql
@@ -231,8 +241,9 @@ CREATE EXTERNAL TABLE athlete (
 STORED AS PARQUET
 LOCATION '/user/cloudera/athlete'
 ```
+- Sql запрос и результаты запроса отобразить в отчете.
 
-#### Impala
+## Impala
 
 `Apache Impala` — это механизм SQL-запросов с открытым исходным кодом и массово-параллельной обработкой данных, хранящихся в компьютерном кластере под управлением Apache Hadoop.
 
@@ -251,4 +262,53 @@ show tables;
 
 * Подсчитайте количество геолокаций для каждого грузовика и отобразите его на гистограмме.
 * Выберите грузовик `A80` и нанесите его координаты геолокации в редакторе `Impala`.
+
+## Индивидуальная работа 3-1
+
+`Индивидуальное Задание 1.` Создание таблицы в `Hive`
+1.	Скачать [датасет](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/athlete.snappy.parquet) или [тут](https://storage.googleapis.com/otus_sample_data/athlete.snappy.parquet) 
+3.	Через `HUE` загрузите файл в папку `/user/cloudera/athlete`.
+4. В навигационном меню выберите `Files`.
+5. Создайте папку.
+6. Загрузите файл в `HDFS`, нажав `Upload`.
+7.	Перейдите в “Editor > Hive” и выполните запрос:
+
+```sql
+CREATE EXTERNAL TABLE athlete (
+    ID INT,
+    Name STRING,
+    Sex STRING,
+    Age INT,
+    Height INT,
+    Weight INT,
+    Team STRING,
+    NOC STRING,
+    Games STRING,
+    `Year` INT,
+    Season STRING,
+    City STRING,
+    Sport STRING,
+    Event STRING,
+    Medal STRING 
+)
+STORED AS PARQUET
+LOCATION '/user/cloudera/athlete'
+```
+- Sql запрос и результаты запроса отобразить в отчете.
+
+`Индивидуальное Задание 2.` Проанализировать и визуализировать данные с помощью `Impala`(высокоскоростной механизм запросов SQL) или `Hive`. 
+- Загрузить и разархивировать [babs_open_data_year_1.zip](https://disk.yandex.ru/d/JrboaizPXSh0Mg).
+- Перенести данные `201402_trip_data.csv` в `HDFS`.
+- Создать таблицу в Hive  с привязкой к внешним данным `201402_trip_data.csv`.
+- выполнить запрос
+```bash
+select `startstation`, `endstation`, count(*) as trips 
+from `default`.`201402_trip_data` 
+group by `startstation`, `endstation` 
+order by trips desc;
+```
+- Создать гистограмму, щелкнув значок «Hue Bar»:
+- Установить ось X в качестве начальной станции, а ось Y — в качестве маршрута.
+Установить лимит `10`.
+- Выгрузить результаты, выбрав `CSV` или `Excel`.
 
