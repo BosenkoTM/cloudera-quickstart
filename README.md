@@ -31,7 +31,9 @@
   * Учетные данные: **cloudera/cloudera**.
  
 ##  2. Hue
-`Hue` — это интерактивный веб-редактор запросов в стеке `Hadoop`, который позволяет визуализировать данные и обмениваться ими. Выбрав один из нескольких интерпретаторов для `Apache Hive`, `Apache Impala`, `Presto Apache Flink SQL`, `SparkSQL`, `Apache Phoenix`, `ksqlDB`, `Elastic Search`, `Apache Druid`, `PostgreSQL`, `Redshift`, `BigQuery`, позволяет подключиться ко всем базам данных.
+`Hue` — это интерактивный веб-редактор запросов в стеке `Hadoop`, который позволяет визуализировать данные и обмениваться ими. В
+![hue_4.5](/images/hue_4.5.png)
+ыбрав один из нескольких интерпретаторов для `Apache Hive`, `Apache Impala`, `Presto Apache Flink SQL`, `SparkSQL`, `Apache Phoenix`, `ksqlDB`, `Elastic Search`, `Apache Druid`, `PostgreSQL`, `Redshift`, `BigQuery`, позволяет подключиться ко всем базам данных.
 (https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html)/
 
 `Задание 1.` Проанализировать и визуализировать данные с помощью `Impala`(высокоскоростной механизм запросов SQL). 
