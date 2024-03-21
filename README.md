@@ -10,17 +10,17 @@
 
 Прежде чем приступить к работе, понадобится работающий кластер Hadoop..
 
-В следующих упражнениях мы будем использовать [Cloudera quickstart VM](https://downloads.cloudera.com/demo_vm/virtualbox/cloudera-quickstart-vm-5.13.0-0-virtualbox.zip).
+В следующих упражнениях используем [Cloudera quickstart VM](https://downloads.cloudera.com/demo_vm/virtualbox/cloudera-quickstart-vm-5.13.0-0-virtualbox.zip).
 
-* Загрузите и разархивируйте приложение для VirtualBox.
+* Загрузить и разархивировать приложение для VirtualBox.
 
 * Импортируйте файл `.ova` в VirtualBox. **не запускайте**, сначало настроить виртуальное окружение.
 
-  * Требуется настроить виртуальную машину на использование как минимум 6-8 ГБ ОЗУ `Configuration > System`. 
+  * Требуется установить для виртуальной машины `cloudera-quickstart-vm-5.13.0-0-virtualbox` диапазон виртуальной памяти от 4 до 8 ГБ ОЗУ `Configuration > System`. 
 
-* Запустите виртуальную машину с помощью зеленой стрелки.
+* Запустить виртуальную машину `cloudera-quickstart-vm-5.13.0-0-virtualbox`.
 
-* Чтобы [включить копирование/вставку](https://www.techrepublic.com/article/how-to-enable-copy-and-paste-in-virtualbox/), выберите `Devices > Shared Clipboard > Bidirectional`.
+* Чтобы [включить копирование/вставку](https://www.techrepublic.com/article/how-to-enable-copy-and-paste-in-virtualbox/) с ПК, выбрать `Devices > Shared Clipboard > Bidirectional`.
 
 ##  1. Взаимодействие с компонентами Hadoop
 
