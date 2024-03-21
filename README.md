@@ -22,27 +22,18 @@
 
 * Чтобы [включить копирование/вставку](https://www.techrepublic.com/article/how-to-enable-copy-and-paste-in-virtualbox/), выберите `Devices > Shared Clipboard > Bidirectional`.
 
-В первой части урока мы будем взаимодействовать с [trucks geolocation dataset from the Cloudera tutorial](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
+##  1. Взаимодействие с компонентами Hadoop
 
-##  Первые шаги в экосистеме Hadoop
+Взаимодействие с кластером Hadoop будет осуществляться через [Hue](https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html).
 
-Скачать репозиторий с заданием на виртуальную машину.
-
-```bash
-git clone https://github.com/BosenkoTM/cloudera-quickstart.git
-```
-
-Взаимодействия с кластером Hadoop будет осуществляться через [Hue](https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html).
-
-* * Откройте Firefox: откройте терминал и введите  `firefox` или `Applications > System tools > Web browser`
-* Откройте вкладку `Hue`. Это будет наш основной пользовательский интерфейс для взаимодействия с HDFS.
+`1.1.` Откройте Firefox: в терминале  введите  `firefox` или через панель управления: `Applications > System tools > Web browser`
+* Откройте вкладку `Hue` - основной пользовательский интерфейс для взаимодействия с `HDFS`.
   * Учетные данные: **cloudera/cloudera**.
 
-####  1. Первые шаги по HDFS 
+####  2. Взаимодействие с файловой системой HDFS 
 
-* Скачать и разархивировать [Geolocation data from Cloudera](https://www.cloudera.com/content/dam/www/marketing/tutorials/getting-started-with-hdp-sandbox/assets/datasets/Geolocation.zip). 
-  * Это можно сделать из Firefox, загрузив его в папку на виртуальной машине.
-  * Вы также можете воспользоваться терминалом `wget https://www.cloudera.com/content/dam/www/marketing/tutorials/getting-started-with-hdp-sandbox/assets/datasets/Geolocation.zip` и `unzip Geolocation.zip`.
+* Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
+* Вы также можете воспользоваться терминалом `wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip` и `unzip geolocation.csv`.
 * В `Hue`, выберите `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
   * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
