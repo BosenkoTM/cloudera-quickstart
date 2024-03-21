@@ -14,9 +14,9 @@
 
 * Загрузить и разархивировать приложение для VirtualBox.
 
-* Импортируйте файл `.ova` в VirtualBox. **не запускайте**, сначало настроить виртуальное окружение.
+* Импортировать файл `.ova` в VirtualBox. **не запускайте**, сначало настроить виртуальное окружение.
 
-  * Требуется установить для виртуальной машины `cloudera-quickstart-vm-5.13.0-0-virtualbox` диапазон виртуальной памяти от 4 до 8 ГБ ОЗУ `Configuration > System`. 
+* Установить для виртуальной машины `cloudera-quickstart-vm-5.13.0-0-virtualbox` диапазон виртуальной памяти от 4 до 8 ГБ ОЗУ `Configuration > System`. 
 
 * Запустить виртуальную машину `cloudera-quickstart-vm-5.13.0-0-virtualbox`.
 
@@ -24,22 +24,37 @@
 
 ##  1. Взаимодействие с компонентами Hadoop
 
-Взаимодействие с кластером Hadoop будет осуществляться через [Hue](https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html).
+Взаимодействие с кластером `Hadoop` будет осуществляться через [Hue](https://gethue.com/). 
 
 `1.1.` Откройте Firefox: в терминале  введите  `firefox` или через панель управления: `Applications > System tools > Web browser`
 * Откройте вкладку `Hue` - основной пользовательский интерфейс для взаимодействия с `HDFS`.
   * Учетные данные: **cloudera/cloudera**.
+ 
+##  2. Hue
+`Hue` — это интерактивный веб-редактор запросов в стеке `Hadoop`, который позволяет визуализировать данные и обмениваться ими. Выбрав один из нескольких интерпретаторов для `Apache Hive`, `Apache Impala`, `Presto Apache Flink SQL`, `SparkSQL`, `Apache Phoenix`, `ksqlDB`, `Elastic Search`, `Apache Druid`, `PostgreSQL`, `Redshift`, `BigQuery`, позволяет подключиться ко всем базам данных.
+(https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html)/
 
-####  2. Взаимодействие с файловой системой HDFS 
+`Задание 1.` Проанализировать и визуализировать данные с помощью `Impala`(высокоскоростной механизм запросов SQL). 
 
-* Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
-* Вы также можете воспользоваться терминалом `wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip` и `unzip geolocation.csv`.
-* В `Hue`, выберите `Browsers > Files`. 
+###  3. Взаимодействие с файловой системой HDFS 
+
+3.1. Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/S9VgKivO02B_fA). 
+
+* Или использовать терминал:
+```bash
+wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip 
+```
+
+```bash
+unzip geolocation.csv
+```
+
+2.2. В `Hue`, выбрать `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
   * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
-* Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`..
+* Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
 
-#### 2. HDFS CLI
+### 4. HDFS CLI
 
 * Откройте терминал.
 * Вы можете получить доступ к команде hdfs из терминала. Это должно вывести справку из командной строки.
@@ -63,7 +78,7 @@ hdfs dfs -chmod -R 777 /tmp
 
 _PS : не забудьте дважды выйти из системы, чтобы вернуться к пользователю `сloudera`, иначе у вас возникнут ошибки при доступе к папкам `HDFS_`.
 
-#### 3. Map Reduce 
+### 5. Map Reduce 
 
 * Запустите пример Pi:
 `yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 4 100`
