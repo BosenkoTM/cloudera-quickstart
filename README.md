@@ -26,6 +26,12 @@
 
 ##  Первые шаги в экосистеме Hadoop
 
+Скачать репозиторий с заданием на виртуальную машину.
+
+```bash
+git clone https://github.com/BosenkoTM/cloudera-quickstart.git
+```
+
 Взаимодействия с кластером Hadoop будет осуществляться через [Hue](https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html).
 
 * * Откройте Firefox: откройте терминал и введите  `firefox` или `Applications > System tools > Web browser`
