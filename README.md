@@ -97,7 +97,7 @@ _PS : не забудьте дважды выйти из системы, что�
 
 5.1. Запустить пример Pi:
 ```bash
-yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 4 100`
+yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 4 100
 ```
 5.2. Проверить результат выполнения в YARN. Проверить логи выполнения примера можно в Firefox на вкладке `Hadoop > YARN Resource Manager`.
 
