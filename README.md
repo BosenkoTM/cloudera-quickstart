@@ -34,7 +34,6 @@
 `Hue` — это интерактивный веб-редактор запросов в стеке `Hadoop`, который позволяет визуализировать данные и обмениваться ими. 
 ![hue_4.5](/images/hue_4.5.png)
 Выбрав один из нескольких интерпретаторов для `Apache Hive`, `Apache Impala`, `Presto Apache Flink SQL`, `SparkSQL`, `Apache Phoenix`, `ksqlDB`, `Elastic Search`, `Apache Druid`, `PostgreSQL`, `Redshift`, `BigQuery`, позволяет подключиться ко всем базам данных.
-(https://docs.cloudera.com/documentation/enterprise/5-13-x/topics/hue.html)/
 
 ##  3. Взаимодействие с файловой системой HDFS 
 
