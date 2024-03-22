@@ -45,7 +45,7 @@ wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/
 ```
 
 ```bash
-unzip geolocation.csv
+unzip geolocation.zip
 ```
 `3.2.` В `Hue`, выбрать `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
