@@ -59,7 +59,7 @@ unzip geolocation.zip
 4.2. Проверить версию `HDFS` с помощью 
 
 ```bash
-`hdfs version`.
+hdfs version
 ```
 4.3. Просмотреть все папки внутри HDFS с помощью
 
