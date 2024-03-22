@@ -262,6 +262,7 @@ order by trips desc;
 Можно запустить двумя способами:
 - В интерактивном режиме через Терминал, запустив оболочку Pig с помощью `pig` и выполняя команды одну за другой.
 - В `Hue`можно перейти в редактор Pig через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
+
 3-2.1 Запустить  скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла геолокации:
 ```bash
 geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid,driverid,event,latitude,longitude,city,state,velocity,event_ind,idling_ind);
