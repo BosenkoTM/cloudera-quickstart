@@ -273,22 +273,42 @@ order by trips desc;
 
 ### Pig
 
-`Pig` — это расширение для компиляции определенного языка `Pig Latin` в сценарии `MapReduce`.
+- В `Hue` перейти в редактор Pig через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
 
-Можно запустить двумя способами:
-- В интерактивном режиме через Терминал, запустив оболочку Pig с помощью `pig` и выполняя команды одну за другой.
-- В `Hue`можно перейти в редактор Pig через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
+`3-2.1`  Скачать [Geolocation data из Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww).
 
-`3-2.1` Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww). 
+Создать каталог `ex_3_2`:
 
-* Или использовать терминал:
 ```bash
-wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip 
+mkdir ex_3_2
+```
+Пререйти в каталог `ex_3_2`:
+
+```bash
+cd  ex_3_2
+```
+Скачать данные `Geolocation data`:
+
+```bash
+wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/geolocation.csv 
 ```
 
 ```bash
-unzip geolocation.zip
+wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/trucks.csv
 ```
+
+3.2. В Hue, выбрать Browsers > Files.
+
+Создайте новый каталог в `HDFS` с именем `data` внутри` HDFS` из `Hue`.
+По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
+
+im_01.jpg
+
+Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
+
+
+im_02.jpg
+
 `3-2.2` В `Hue`, выбрать `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
   * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
