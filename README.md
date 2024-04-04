@@ -131,7 +131,7 @@ hdfs dfs -cat output/part-r-00000
 Изначально `Pig` был создан для работы из консоли (оболочка `Grunt Shell`). В реализации от `Cloudera` работа с `Pig` осуществляется через простой и удобный веб-интерфейс. Открыть его можно через интерфейс `Hue`:
 
 <p align="center">
-  <img src="[http://some_place.com/image.png](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/images/pig_01.png)" />
+  <img src="https://github.com/BosenkoTM/cloudera-quickstart/blob/main/images/pig_01.png" />
 </p>
 
  ![pig_01](/images/pig_01.png)
