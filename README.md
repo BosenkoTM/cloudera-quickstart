@@ -307,7 +307,7 @@ wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/geolocation
 wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/trucks.csv
 ```
 
-3.2. В Hue, выбрать Browsers > Files.
+`3-2.2` В `Hue`, выбрать `Browsers > Files`. 
 
 Создайте новый каталог в `HDFS` с именем `data` внутри` HDFS` из `Hue`.
 По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
@@ -318,16 +318,31 @@ wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/trucks.csv
 
 ![im_02](/images/im_02.jpg)
 
-`3-2.2` В `Hue`, выбрать `Browsers > Files`. 
-* Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
-  * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
-* Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
-3-2.3 Запустить  скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла геолокации в редакторе `Pig` через `Query > Editor > Pig`:
+
+3-2.3 Запустить  скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла 'data/geolocation.csv'  в каталог 'results-data'(он будет создан автоматически, после выполнения скрипта)  в редакторе `Pig` через Hue: `Query > Editor > Pig`:
+
+Сначала убедиться в запуске `Dataflow` инструмента `Oozie`. На панели инструментов линк `Oozie` должен быть активным.
+
+![oozie_flow_01](/images/oozie_flow_01.png)
+
 ```bash
-geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid,driverid,event,latitude,longitude,city,state,velocity,event_ind,idling_ind);
+geoloc = LOAD 'data/geolocation.csv' USING PigStorage(',') AS (truckid:chararray, 
+driverid:chararray, event:chararray, latitude:double, longitude:double, city:chararray, 
+state:chararray, velocity:double, event_ind:long, idling_ind:long);
 geoloc_limit = LIMIT geoloc 10;
+STORE geoloc_limit INTO 'results-data'; 
 DUMP geoloc_limit;
 ```
+Просмотреть Job DAG `Oozie` во время выполнения запроса к `Pig`:
+
+![oozie_flow_02](/images/oozie_flow_02.png)
+
+После получения метаданных выполнения запроса 
+
+![pig_02](/images/pig_02.png)
+
+превирить в каталоге 'results-data' файл  'part-r-00000'
+
 3-2.2 Посчитать статистику по файлу. 
 ```bash
 geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid:chararray, driverid:chararray, event:chararray, latitude:double, longitude:double, city:chararray, state:chararray, velocity:double, event_ind:long, idling_ind:long);
