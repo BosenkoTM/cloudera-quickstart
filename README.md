@@ -37,31 +37,16 @@
 
 ##  3. Взаимодействие с файловой системой HDFS 
 
-`3.1.` Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww). 
+##  HDFS CLI
 
-* Или использовать терминал:
-```bash
-wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip 
-```
+3.1. Открыть  терминал.
 
-```bash
-unzip geolocation.zip
-```
-`3.2.` В `Hue`, выбрать `Browsers > Files`. 
-* Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
-  * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
-* Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
-
-## 4. HDFS CLI
-
-4.1. Открыть  терминал.
-
-4.2. Проверить версию `HDFS` с помощью 
+3.2. Проверить версию `HDFS` с помощью 
 
 ```bash
 hdfs version
 ```
-4.3. Просмотреть все папки внутри HDFS с помощью
+3.3. Просмотреть все папки внутри HDFS с помощью
 
 ```bash
 hdfs dfs -ls /
@@ -69,7 +54,7 @@ hdfs dfs -ls /
    * Если вы наберете только `hdfs dfs -ls`, вы перейдете на `hdfs:///user/cloudera`. Необходимо найти файлы геолокации.
    * По умолчанию, если не указать абсолютный путь к HDFS, будет отображен домашний каталог HDFS `hdfs:///user/cloudera`.
      
-4.4. Переименовать папку `hdfs:///user/cloudera/data` в `hdfs:///user/cloudera/geoloc` с помощью `hdfs dfs -mv` .
+3.4. Переименовать папку `hdfs:///user/cloudera/data` в `hdfs:///user/cloudera/geoloc` с помощью `hdfs dfs -mv` .
    * Помните, что по умолчанию
 
 ```bash   
@@ -77,7 +62,7 @@ hdfs dfs -ls /
 ```
 эквивалентен `hdfs dfs -mv hdfs:///user/cloudera/data hdfs:///user/cloudera/geoloc`.
 
-4.5. Создать папку в HDFS с именем «test».
+3.5. Создать папку в HDFS с именем «test».
 * Чтобы скопировать файлы с локального компьютера в HDFS, используют скрипт
 ```bash
   hdfs dfs -copyFromLocal <local_file> <path_in_HDFS>
@@ -93,15 +78,15 @@ hdfs dfs -chmod -R 777 /tmp
 
 _PS : не забудьте дважды выйти из системы, чтобы вернуться к пользователю `сloudera`, иначе у вас возникнут ошибки при доступе к папкам `HDFS_`.
 
-### 5. Map Reduce 
+### 4. Map Reduce 
 
-5.1. Запустить пример Pi:
+4.1. Запустить пример Pi:
 ```bash
 yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar pi 4 100
 ```
-5.2. Проверить результат выполнения в YARN. Проверить логи выполнения примера можно в Firefox на вкладке `Hadoop > YARN Resource Manager`.
+4.2. Проверить результат выполнения в YARN. Проверить логи выполнения примера можно в Firefox на вкладке `Hadoop > YARN Resource Manager`.
 
-5.3. Подсчитать количество слов в файле `geolocation.csv`, размещенного в каталоге `hdfs:///user/cloudera/geoloc/`.
+4.3. Подсчитать количество слов в файле `geolocation.csv`, размещенного в каталоге `hdfs:///user/cloudera/geoloc/`.
 
 ```bash
 yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar wordcount geoloc/geolocation.csv output
@@ -110,7 +95,7 @@ yarn jar /usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar wordcount geolo
 ```bash
 hdfs dfs -rm -r -f output
 ```
-5.4. Проверить каталог `hdfs:///user/cloudera/output`. Использовать 
+4.4. Проверить каталог `hdfs:///user/cloudera/output`. Использовать 
 ```bash
 hdfs dfs -ls output
 ```
@@ -121,6 +106,19 @@ hdfs dfs -cat output/part-r-00000
 Также просмотреть журналы на новой вкладке `Hadoop > YARN Resource Manager` в Firefox.
 
 * Выполняет работу только один `reducer`. Вы можете редактировать количество работающих `reducers` с помощью флага `-D mapred.reduce.tasks=10` . Отредактируйте предыдущую команду, чтобы изменить количество работающих `reducers`. Возможно, вам следует удалить или изменить имя папки вывода.
+
+## 5. Pig
+
+`Pig` состоит из двух частей:
+
+- язык для описания потоков Pig Latin;
+- исполнительная среда для запуска сценариев Pig Latin (доступны два варианта: запуск на локальной JVM или исполнение в кластере Hadoop).
+  
+Сценарий `Pig` включает серию операций (преобразований), которые необходимо применить к входным данным, чтобы получить выходные данные. Эти операции описывают поток данных, который затем преобразуется (компилируется) исполнительной средой Pig в исполняемое представление и запускается для выполнения. Во внутренней реализации `Pig` трансформирует преобразования в серию заданий `MapReduce`.
+
+Изначально `Pig` был создан для работы из консоли (оболочка `Grunt Shell`). В реализации от `Cloudera` работа с `Pig` осуществляется через простой и удобный веб-интерфейс. Открыть его можно через интерфейс `Hue`:
+
+
 
 ## 6. Hive
 
@@ -262,7 +260,21 @@ order by trips desc;
 - В интерактивном режиме через Терминал, запустив оболочку Pig с помощью `pig` и выполняя команды одну за другой.
 - В `Hue`можно перейти в редактор Pig через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
 
-3-2.1 Запустить  скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла геолокации в редакторе `Pig` через `Query > Editor > Pig`:
+`3-2.1` Скачать [Geolocation data from Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww). 
+
+* Или использовать терминал:
+```bash
+wget https://community.cloudera.com/xgkfq28377/attachments/xgkfq28377/Questions/87306/1/geolocation.zip 
+```
+
+```bash
+unzip geolocation.zip
+```
+`3-2.2` В `Hue`, выбрать `Browsers > Files`. 
+* Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
+  * По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
+* Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
+3-2.3 Запустить  скрипт/команды, чтобы загрузить и отобразить первые десять строк из файла геолокации в редакторе `Pig` через `Query > Editor > Pig`:
 ```bash
 geoloc = LOAD 'geoloc/geolocation.csv' USING PigStorage(',') AS (truckid,driverid,event,latitude,longitude,city,state,velocity,event_ind,idling_ind);
 geoloc_limit = LIMIT geoloc 10;
