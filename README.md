@@ -123,7 +123,7 @@ hdfs dfs -cat output/part-r-00000
 ![pig_01](/images/pig_01.png)
 
 <p align="center">
-Разница между <b>Pig</b>b> и <b>Hue</b>b>
+Разница между <b>Pig</b> и <b>Hue</b>
 </p>
 
 | Pig | Hue |
