@@ -22,6 +22,16 @@
 
 * Чтобы [включить копирование/вставку](https://www.techrepublic.com/article/how-to-enable-copy-and-paste-in-virtualbox/) с ПК, выбрать `Devices > Shared Clipboard > Bidirectional`.
 
+В `Cloudera quickstart VM` папка `hdfs:///tmp` не имеет разрешений на запись. В экосистеме `Hadoop` суперпользователем является не `root`, а `hdfs`. Установим разрешения на запись пользователем `hdfs`. Запустите следующий скрипт.
+
+
+```bash
+sudo su -
+su hdfs
+hdfs dfs -chmod -R 777 /tmp
+```
+
+
 ##  1. Взаимодействие с компонентами Hadoop
 
 Взаимодействие с кластером `Hadoop` будет осуществляться через [Hue](https://gethue.com/). 
