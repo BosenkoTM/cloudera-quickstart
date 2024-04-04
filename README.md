@@ -134,8 +134,6 @@ hdfs dfs -cat output/part-r-00000
   <img src="https://github.com/BosenkoTM/cloudera-quickstart/blob/main/images/pig_01.png" />
 </p>
 
- ![pig_01](/images/pig_01.png)
-
 <p align="center">
 Разница между <b>Pig</b> и <b>Hue</b>
 </p>
