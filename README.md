@@ -302,12 +302,11 @@ wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/trucks.csv
 Создайте новый каталог в `HDFS` с именем `data` внутри` HDFS` из `Hue`.
 По умолчанию это должно быть создано под `hdfs:///user/cloudera/`.
 
-im_01.jpg
+![im_01](/images/im_01.jpg)
 
 Загрузите `Geolocation.csv` и `trucks.csv` в только что созданную папку `data/`.
 
-
-im_02.jpg
+![im_02](/images/im_02.jpg)
 
 `3-2.2` В `Hue`, выбрать `Browsers > Files`. 
 * Создайте новый каталог в HDFS с именем `data` внутри HDFS из `Hue`.
