@@ -25,7 +25,7 @@ wget https://community.cloudera.com/legacyfs/online/attachments/2768-geolocation
 ```
 разархивировать данные
 ```bash
-unzip geolocation.zip
+unzip 2768-geolocation.zip
 ```
 
 `3-2.2` В `Hue`, выбрать `Browsers > Files`. 
