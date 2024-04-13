@@ -6,7 +6,7 @@
 
 - В `Hue` перейти в редактор `Pig` через `Query > Editor > Pig`. Это предпочтительный метод, если хотим запускать полные сценарии, но выполняется намного дольше, чем оболочка `Pig`.
 
-`3-2.1`  Скачать архив [Geolocation github zip](https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/geolocation.zip) или  [Geolocation data из Cloudera](https://disk.yandex.ru/d/aEkr5l-XClpYww).
+`3-2.1`  Скачать архив [Geolocation github zip](https://community.cloudera.com/legacyfs/online/attachments/2768-geolocation.zip)
 
 Создать каталог `ex_3_2`:
 
@@ -21,7 +21,7 @@ cd  ex_3_2
 Скачать данные `Geolocation data`:
 
 ```bash
-wget https://github.com/BosenkoTM/cloudera-quickstart/blob/main/data/geolocation.zip
+wget https://community.cloudera.com/legacyfs/online/attachments/2768-geolocation.zip
 ```
 разархивировать данные
 ```bash
